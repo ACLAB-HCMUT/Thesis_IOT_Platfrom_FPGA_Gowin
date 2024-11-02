@@ -5,17 +5,16 @@
 #include "XPowersLib.h" //https://github.com/lewisxhe/XPowersLib
 #include "pins_config.h"
 
-// Thông tin WiFi
-#define WLAN_SSID       "*"
-#define WLAN_PASS       "*"
+#define WLAN_SSID       "Hong them"
+#define WLAN_PASS       "quang1234"
 
-// Thông tin Adafruit IO
+
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883  
-#define AIO_USERNAME    "*"
+#define AIO_USERNAME    "1zy"
 #define AIO_KEY         "*"
 
-// Khởi tạo client WiFi và MQTT
+
 WiFiClient client;
 Adafruit_MQTT_Client mqtt(&client, AIO_SERVER, AIO_SERVERPORT, AIO_USERNAME, AIO_KEY);
 //Feed để publishing
@@ -109,13 +108,9 @@ void mqtt_Feedback(int duration){
 }
 void adaFruit_control(String feed_value){
       if (feed_value == "ON") {
-        PMU.setChargingLedMode(XPOWERS_CHG_LED_ON);
-        //fpga_led(1);
-        //mqtt_Feedback(5);
+        fpga_led(1);
       } else if (feed_value == "OFF") {
-        PMU.setChargingLedMode(XPOWERS_CHG_LED_OFF);
-        //fpga_led(0);
-        //mqtt_Feedback(2);
+        fpga_led(0);
       }
 }
 void sendingSuccess(int counts){
@@ -127,80 +122,6 @@ void sendingSuccess(int counts){
 
   }
 }
-
-unsigned long hexToDec(const char* hexString) {
-  unsigned long decValue = 0;
-  
-  // Duyệt qua từng ký tự trong chuỗi HEX
-  while (*hexString) {
-    char hexDigit = *hexString;
-
-    // Chuyển đổi ký tự HEX thành giá trị thập phân
-    if (hexDigit >= '0' && hexDigit <= '9') {
-      decValue = (decValue << 4) | (hexDigit - '0');
-    } 
-    else if (hexDigit >= 'A' && hexDigit <= 'F') {
-      decValue = (decValue << 4) | (hexDigit - 'A' + 10);
-    } 
-    else if (hexDigit >= 'a' && hexDigit <= 'f') {
-      decValue = (decValue << 4) | (hexDigit - 'a' + 10);
-    }
-    
-    hexString++;
-  }
-  
-  return decValue;
-}
-
-// void uArt_receiv() {
-//   while (Serial1.available() > 0) {
-//     char receivedData =Serial1.read();
-// if ((receivedData >= '0' && receivedData <= '9') ||
-//         (receivedData >= 'A' && receivedData <= 'F') ||
-//         (receivedData >= 'a' && receivedData <= 'f')) {
-
-//       // Thêm ký tự vào chuỗi HEX
-//       hexString[index++] = receivedData;
-//       hexString[index] = '\0';  // Đảm bảo chuỗi kết thúc bằng null
-
-//       // Nếu đủ 4 ký tự HEX, chuyển sang số thập phân
-//       if (index >= 4) {
-//         unsigned long decimalValue = hexToDec(hexString);
-//         index = 0;
-//       }
-//         }
-//     //Serial.print("Received from UART: ");
-//     //Serial.println(receivedData);
-//     //long sending_value = hexToDec(receivedData);
-//     unsigned long currentTime = millis();  // Get the current time
-
-//     // Ensure at least 2 seconds have passed since the last publish
-//     if (currentTime - lastPublishTime >= publishInterval) {
-//       if (!feed.publish((int)receivedData)) {
-//         Serial.println("Failed to publish received data");
-//       } else {
-//         Serial.print("Published to Adafruit IO: ");
-//         Serial.println(receivedData);
-//         lastPublishTime = currentTime;  // Update last publish time
-//       }
-//     } else {
-//       Serial.println("Skipping publish to avoid rate limit");
-//     }
-
-//     if (receivedData == '1' && flag != 1) {
-//       digitalWrite(LED_UART, HIGH);
-//       flag = 1;
-//       delay(250);
-//       digitalWrite(LED_UART, LOW);
-//     }
-
-//     if (flag == 1) {
-//       digitalWrite(LED_UART, LOW);
-//       delay(3000);
-//       flag = 0;
-//     }
-//   }
-// }
 
 TaskHandle_t ledTaskHandle = NULL;  // Define task handle for the LED task
 void led_task(void *param){
@@ -224,10 +145,7 @@ void fpga_led(uint8_t en)
 
  unsigned long lastPublishTime = 0;  // To store the last publish time
  unsigned long publishInterval = 15000;  // Minimum interval 
-//  int testvalue = 0;
-//  void upDate_value(){
-//   testvalue += 1;
-//  }
+
 void publishing(){
     receiveData();
     //unsigned long currentTime = millis();  // Get the current time
@@ -253,7 +171,7 @@ void setup() {
   Serial.begin(115200);        
 
   connectToWiFi();
-  
+  PMU.setChargingLedMode(XPOWERS_CHG_LED_OFF);
   // Đăng ký feed MQTT
   mqtt.subscribe(&myFeedSub);
 
@@ -284,10 +202,10 @@ void setup() {
     scan_i2c_device(Wire1);
 }
 uint8_t en = 0;
-void loop() {
+void loop() { 
   // Kết nối MQTT
   MQTT_connect();
-  
+  PMU.setChargingLedMode(XPOWERS_CHG_LED_ON);
   //Kiểm tra các gói tin từ MQTT
   Adafruit_MQTT_Subscribe *subscription;
   while ((subscription = mqtt.readSubscription(5000))) {
@@ -299,13 +217,12 @@ void loop() {
       adaFruit_control(value);
     }
   }
-  fpga_led(en);
-  //receiveData();
-  en++;
+  //fpga_led(en);
+  //en++;
   //if (en == 5) //sendingSuccess(5);
-  if (en == 10) en = 0;
+  //if (en == 10) en = 0;
   publishing();
-  // Ping MQTT để giữ kết nối
+
   //mqtt.processPackets(10000);
   //mqtt.ping();
 }
