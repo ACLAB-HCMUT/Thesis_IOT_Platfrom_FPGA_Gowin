@@ -11,7 +11,7 @@
 
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883  
-#define AIO_USERNAME    "1zy"
+#define AIO_USERNAME    "*"
 #define AIO_KEY         "*"
 
 
@@ -20,8 +20,8 @@ Adafruit_MQTT_Client mqtt(&client, AIO_SERVER, AIO_SERVERPORT, AIO_USERNAME, AIO
 //Feed để publishing
 Adafruit_MQTT_Publish feed = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME"/feeds/io");
 // Feed để subscribe
-Adafruit_MQTT_Subscribe myFeedSub = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME "/feeds/gowin-io");
-
+Adafruit_MQTT_Subscribe myFeedSub_io = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME "/feeds/gowin-io");
+Adafruit_MQTT_Subscribe myFeedSub_sensor = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME "/feeds/light");
 // Kết nối WiFi
 void connectToWiFi() {
   Serial.print("Connecting to ");
@@ -109,8 +109,17 @@ void mqtt_Feedback(int duration){
 void adaFruit_control(String feed_value){
       if (feed_value == "ON") {
         fpga_led(1);
-      } else if (feed_value == "OFF") {
+      }
+      if (feed_value == "OFF") {
         fpga_led(0);
+      }
+      if (feed_value == "AUTO") {
+        //fpga_led(1);
+        Serial.print("Reading sht20...\n");
+      } 
+      if (feed_value == "STOP") {
+        //fpga_led(0);
+        Serial.print("Stop reading\n");
       }
 }
 void sendingSuccess(int counts){
@@ -172,8 +181,8 @@ void setup() {
 
   connectToWiFi();
   PMU.setChargingLedMode(XPOWERS_CHG_LED_OFF);
-  // Đăng ký feed MQTT
-  mqtt.subscribe(&myFeedSub);
+  mqtt.subscribe(&myFeedSub_io);
+  mqtt.subscribe(&myFeedSub_sensor);
 
     Serial.println("Hello T-FPGA-CORE");
     xTaskCreatePinnedToCore(led_task, "led_task", 1024, NULL, 1, &ledTaskHandle, 1);
@@ -208,21 +217,32 @@ void loop() {
   PMU.setChargingLedMode(XPOWERS_CHG_LED_ON);
   //Kiểm tra các gói tin từ MQTT
   Adafruit_MQTT_Subscribe *subscription;
-  while ((subscription = mqtt.readSubscription(5000))) {
-    if (subscription == &myFeedSub) {
+  while ((subscription = mqtt.readSubscription(50))) {
+    if (subscription == &myFeedSub_io) {
       // Nhận lệnh từ Adafruit IO
-      String value = (char *)myFeedSub.lastread;
+      String value = (char *)myFeedSub_io.lastread;
       Serial.print("Received: ");
       Serial.println(value);
       adaFruit_control(value);
+      publishing();
+      Serial.print("Data Updated\n");
     }
+    if (subscription == &myFeedSub_sensor) {
+      // Nhận lệnh từ Adafruit IO
+      String cmd = (char *)myFeedSub_sensor.lastread;
+      Serial.print("Received: ");
+      Serial.println(cmd);
+      adaFruit_control(cmd);
+      //publishing();
+      Serial.print("Data Updated\n");
+    }
+
   }
   //fpga_led(en);
   //en++;
   //if (en == 5) //sendingSuccess(5);
   //if (en == 10) en = 0;
-  publishing();
-
+  //publishing();
   //mqtt.processPackets(10000);
   //mqtt.ping();
 }
