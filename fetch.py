@@ -49,7 +49,7 @@ client.on_message = on_message
 
 try:
     client.connect(ADA_URL, 1883, 60)
-    print("🔗 Kết nối MQTT thành công!")
+    print("Kết nối MQTT thành công!")
 
     client.loop_forever()  # Chạy vòng lặp liên tục
 
