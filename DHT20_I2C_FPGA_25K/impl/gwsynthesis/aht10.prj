@@ -13,7 +13,7 @@
     <OptionList>
         <Option type="disable_insert_pad" value="0"/>
         <Option type="looplimit" value="2000"/>
-        <Option type="output_file" value="/home/quang1806/Desktop/AHT10/aht10/impl/gwsynthesis/aht10.vg"/>
+        <Option type="output_file" value="/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/gwsynthesis/aht10.vg"/>
         <Option type="print_all_synthesis_warning" value="0"/>
         <Option type="ram_rw_check" value="0"/>
         <Option type="verilog_language" value="verilog-2001"/>

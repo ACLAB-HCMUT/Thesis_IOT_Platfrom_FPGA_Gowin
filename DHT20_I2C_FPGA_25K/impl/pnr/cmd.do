@@ -1,8 +1,8 @@
--d /home/quang1806/Desktop/AHT10/aht10/impl/gwsynthesis/aht10.vg
+-d /home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/gwsynthesis/aht10.vg
 -p GW5A-25A-UBGA324-1
 -pn GW5A-LV25UG324ES
--cst /home/quang1806/Desktop/AHT10/aht10/src/i2c_dht2_version3.cst
--cfg /home/quang1806/Desktop/AHT10/aht10/impl/pnr/device.cfg
+-cst /home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/src/i2c_dht2_version3.cst
+-cfg /home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/pnr/device.cfg
 -bit
 -tr
 -ph

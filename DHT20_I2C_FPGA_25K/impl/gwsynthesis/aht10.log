@@ -8,8 +8,8 @@ Analyzing Verilog file '/home/quang1806/Desktop/AHT10/aht10/src/uart_data_tx.v'
 Compiling module 'topmodule'("/home/quang1806/Desktop/AHT10/aht10/src/i2c_top4.v":1)
 Compiling module 'i2c_control'("/home/quang1806/Desktop/AHT10/aht10/src/i2c_control_4.v":1)
 Compiling module 'i2c_bit_shift'("/home/quang1806/Desktop/AHT10/aht10/src/i2c_bit_shift.v":1)
-Compiling module 'uart_data_tx(DATA_WIDTH=40)'("/home/quang1806/Desktop/AHT10/aht10/src/uart_data_tx.v":42)
-Compiling module 'uart_byte_tx'("/home/quang1806/Desktop/AHT10/aht10/src/uart_byte_tx.v":20)
+Compiling module 'uart_data_tx(DATA_WIDTH=40)'("/home/quang1806/Desktop/AHT10/aht10/src/uart_data_tx.v":3)
+Compiling module 'uart_byte_tx'("/home/quang1806/Desktop/AHT10/aht10/src/uart_byte_tx.v":3)
 NOTE  (EX0101) : Current top module is "topmodule"
 [5%] Running netlist conversion ...
 Running device independent optimization ...
@@ -27,6 +27,6 @@ Running technical mapping ...
 [75%] Tech-Mapping Phase 2 completed
 [80%] Tech-Mapping Phase 3 completed
 [90%] Tech-Mapping Phase 4 completed
-[95%] Generate netlist file "/home/quang1806/Desktop/AHT10/aht10/impl/gwsynthesis/aht10.vg" completed
-[100%] Generate report file "/home/quang1806/Desktop/AHT10/aht10/impl/gwsynthesis/aht10_syn.rpt.html" completed
+[95%] Generate netlist file "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/gwsynthesis/aht10.vg" completed
+[100%] Generate report file "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/gwsynthesis/aht10_syn.rpt.html" completed
 GowinSynthesis finish

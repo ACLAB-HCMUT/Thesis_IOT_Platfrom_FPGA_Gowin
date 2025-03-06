@@ -1,7 +1,7 @@
-Reading netlist file: "/home/quang1806/Desktop/AHT10/aht10/impl/gwsynthesis/aht10.vg"
-Parsing netlist file "/home/quang1806/Desktop/AHT10/aht10/impl/gwsynthesis/aht10.vg" completed
+Reading netlist file: "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/gwsynthesis/aht10.vg"
+Parsing netlist file "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/gwsynthesis/aht10.vg" completed
 Processing netlist completed
-Reading constraint file: "/home/quang1806/Desktop/AHT10/aht10/src/i2c_dht2_version3.cst"
+Reading constraint file: "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/src/i2c_dht2_version3.cst"
 Physical Constraint parsed completed
 Running placement......
 [10%] Placement Phase 0 completed
@@ -18,9 +18,9 @@ Running timing analysis......
 Placement and routing completed
 Bitstream generation in progress......
 Bitstream generation completed
-Generate file "/home/quang1806/Desktop/AHT10/aht10/impl/pnr/aht10.pin.html" completed
-Generate file "/home/quang1806/Desktop/AHT10/aht10/impl/pnr/aht10.rpt.html" completed
-Generate file "/home/quang1806/Desktop/AHT10/aht10/impl/pnr/aht10.rpt.txt" completed
-Generate file "/home/quang1806/Desktop/AHT10/aht10/impl/pnr/aht10.tr.html" completed
-Thu Mar  6 11:21:52 2025
+Generate file "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/pnr/aht10.pin.html" completed
+Generate file "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/pnr/aht10.rpt.html" completed
+Generate file "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/pnr/aht10.rpt.txt" completed
+Generate file "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/pnr/aht10.tr.html" completed
+Thu Mar  6 12:59:44 2025
 
