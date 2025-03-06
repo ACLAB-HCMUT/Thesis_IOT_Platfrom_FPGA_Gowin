@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="topmodule" Register="117" Lut="158">
+ <SubModule name="i2c_inst" Register="67" Lut="86">
+  <SubModule name="i2c_bit_shift_inst" Register="30" Lut="83"/>
+ </SubModule>
+ <SubModule name="uart_inst" Register="58" Lut="61">
+  <SubModule name="uart_byte_tx" Register="32" Lut="49"/>
+ </SubModule>
+</Module>

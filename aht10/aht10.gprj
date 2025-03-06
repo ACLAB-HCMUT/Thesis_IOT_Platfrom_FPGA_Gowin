@@ -1,0 +1,19 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW5A-25A" pn="GW5A-LV25UG324ES">gw5a25a-006</Device>
+    <FileList>
+        <File path="src/0x18control.v" type="file.verilog" enable="0"/>
+        <File path="src/0x18top.v" type="file.verilog" enable="0"/>
+        <File path="src/i2c_bit_shift.v" type="file.verilog" enable="1"/>
+        <File path="src/i2c_control.v" type="file.verilog" enable="0"/>
+        <File path="src/i2c_control_4.v" type="file.verilog" enable="1"/>
+        <File path="src/i2c_top.v" type="file.verilog" enable="0"/>
+        <File path="src/i2c_top4.v" type="file.verilog" enable="1"/>
+        <File path="src/uart_byte_tx.v" type="file.verilog" enable="1"/>
+        <File path="src/uart_data_tx.v" type="file.verilog" enable="1"/>
+        <File path="src/i2c_dht2_version3.cst" type="file.cst" enable="1"/>
+    </FileList>
+</Project>
