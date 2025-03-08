@@ -1,62 +1,58 @@
-import paho.mqtt.client as mqtt
-import requests
+print("Hello Core IOT")
+import paho.mqtt.client as mqttclient
 import time
+import json
 
-# Địa chỉ server MQTT của Adafruit IO
-ADA_URL = "io.adafruit.com"
-ADA_FEED = "IO"
-ADA_USERNAME = "username"
-ADA_KEY = "*" #API key
+# Cấu hình Adafruit IO
+ADA_BROKER = "io.adafruit.com"
+ADA_PORT = 1883
+ADA_USERNAME = "*"
+ADA_KEY = "*"
+ADA_FEED = "io"
 
-# ThingsBoard MQTT configuration
-THINGSBOARD_HOST = "http://localhost:8080"
-ACCESS_TOKEN = "C1_TEST_TOKEN"
+# Cấu hình App Core IoT
+CORE_BROKER = "app.coreiot.io"
+CORE_PORT = 1883
+CORE_ACCESS_TOKEN = "gowinfpga"
+CORE_ACCESS_USERNAME = "Quang_admin"
 
-# Tạo client MQTT cho Adafruit IO
-def on_connect(client, userdata, flags, rc):
-    print(f"Kết nối với {ADA_URL}, mã trạng thái: {rc}")
-    client.subscribe(f"{ADA_USERNAME}/feeds/{ADA_FEED}")
-
-def on_message(client, userdata, msg):
+# Hàm xử lý khi nhận dữ liệu từ Adafruit
+def on_adafruit_message(client, userdata, msg):
     payload = msg.payload.decode("utf-8")
-    print(f"Nhận dữ liệu từ Adafruit: {payload}")
+    print(f"📩 Nhận dữ liệu từ Adafruit: {payload}")
 
     try:
-        payload = float(payload)  # Chuyển đổi thành số
-        send_data_to_thingsboard(payload)
+        data_value = float(payload)  # Chuyển đổi giá trị nhận được
+        send_to_coreiot(data_value)  # Gửi dữ liệu lên App Core IoT
     except ValueError:
-        print("Lỗi: Dữ liệu nhận được không hợp lệ!")
+        print("⚠️ Lỗi: Dữ liệu nhận không hợp lệ!")
 
-def send_data_to_thingsboard(payload):
-    url = f"{THINGSBOARD_HOST}/api/v1/{ACCESS_TOKEN}/telemetry"
-    data = {"temperature": payload}
-    headers = {"Content-Type": "application/json"}
+# Hàm gửi dữ liệu lên App Core IoT
+def send_to_coreiot(value):
+    collect_data = {'temperature': value}  # Chỉnh lại tên key nếu cần
+    client_coreiot.publish('v1/devices/me/telemetry', json.dumps(collect_data), 1)
+    print(f"📤 Đã gửi dữ liệu lên App Core IoT: {collect_data}")
 
-    try:
-        response = requests.post(url, json=data, headers=headers, timeout=5)
-        if response.status_code == 200:
-            print(f"Gửi dữ liệu lên ThingsBoard thành công: {data}")
-        else:
-            print(f"Lỗi gửi dữ liệu: {response.status_code}, {response.text}")
-    except requests.exceptions.RequestException as e:
-        print(f"Lỗi kết nối ThingsBoard: {e}")
+# Kết nối đến Adafruit IO
+client_adafruit = mqttclient.Client("Adafruit_Client")
+client_adafruit.username_pw_set(ADA_USERNAME, ADA_KEY)
+client_adafruit.on_message = on_adafruit_message
+client_adafruit.connect(ADA_BROKER, ADA_PORT)
+client_adafruit.subscribe(f"{ADA_USERNAME}/feeds/{ADA_FEED}")
 
-# Tạo client MQTT với Paho MQTT v2
-client = mqtt.Client(callback_api_version=mqtt.CallbackAPIVersion.VERSION1)
-client.username_pw_set(ADA_USERNAME, ADA_KEY)
-client.on_connect = on_connect
-client.on_message = on_message
+# Kết nối đến App Core IoT
+client_coreiot = mqttclient.Client("GW1")
+client_coreiot.username_pw_set(CORE_ACCESS_USERNAME, CORE_ACCESS_TOKEN)
+client_coreiot.connect(CORE_BROKER, CORE_PORT)
+
+# Bắt đầu vòng lặp để nhận dữ liệu
+client_adafruit.loop_start()
+client_coreiot.loop_start()
 
 try:
-    client.connect(ADA_URL, 1883, 60)
-    print("Kết nối MQTT thành công!")
-
-    client.loop_forever()  # Chạy vòng lặp liên tục
-
-except Exception as e:
-    print(f"Lỗi kết nối MQTT: {e}")
-
-finally:
-    print("Dừng kết nối MQTT...")
-    client.loop_stop()
-    client.disconnect()
+    while True:
+        time.sleep(5)  # Giữ kết nối liên tục
+except KeyboardInterrupt:
+    print("⏹️ Dừng chương trình...")
+    client_adafruit.loop_stop()
+    client_coreiot.loop_stop()
