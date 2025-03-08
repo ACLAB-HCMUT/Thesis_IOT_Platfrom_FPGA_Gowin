@@ -1,0 +1,48 @@
+[
+ {
+  "InstFile" : "/home/quang1806/Desktop/Gowin/CH9_UART_LOOP/src/uart_loopback.v",
+  "InstLine" : 1,
+  "InstName" : "uart_loopback",
+  "ModuleFile" : "/home/quang1806/Desktop/Gowin/CH9_UART_LOOP/src/uart_loopback.v",
+  "ModuleLine" : 1,
+  "ModuleName" : "uart_loopback",
+  "SubInsts" : [
+   {
+    "InstFile" : "/home/quang1806/Desktop/Gowin/CH9_UART_LOOP/src/uart_loopback.v",
+    "InstLine" : 48,
+    "InstName" : "uart_data_rx",
+    "ModuleFile" : "/home/quang1806/Desktop/Gowin/CH9_UART_LOOP/src/uart_data_rx.v",
+    "ModuleLine" : 1,
+    "ModuleName" : "uart_data_rx",
+    "SubInsts" : [
+     {
+      "InstFile" : "/home/quang1806/Desktop/Gowin/CH9_UART_LOOP/src/uart_data_rx.v",
+      "InstLine" : 33,
+      "InstName" : "uart_byte_rx",
+      "ModuleFile" : "/home/quang1806/Desktop/Gowin/CH9_UART_LOOP/src/uart_byte_rx.v",
+      "ModuleLine" : 8,
+      "ModuleName" : "uart_byte_rx"
+     }
+    ]
+   },
+   {
+    "InstFile" : "/home/quang1806/Desktop/Gowin/CH9_UART_LOOP/src/uart_loopback.v",
+    "InstLine" : 64,
+    "InstName" : "uart_data_tx",
+    "ModuleFile" : "/home/quang1806/Desktop/Gowin/CH9_UART_LOOP/src/uart_data_tx.v",
+    "ModuleLine" : 1,
+    "ModuleName" : "uart_data_tx",
+    "SubInsts" : [
+     {
+      "InstFile" : "/home/quang1806/Desktop/Gowin/CH9_UART_LOOP/src/uart_data_tx.v",
+      "InstLine" : 33,
+      "InstName" : "uart_byte_tx",
+      "ModuleFile" : "/home/quang1806/Desktop/Gowin/CH9_UART_LOOP/src/uart_byte_tx.v",
+      "ModuleLine" : 1,
+      "ModuleName" : "uart_byte_tx"
+     }
+    ]
+   }
+  ]
+ }
+]
