@@ -6,9 +6,10 @@ import json
 # Cấu hình Adafruit IO
 ADA_BROKER = "io.adafruit.com"
 ADA_PORT = 1883
-ADA_USERNAME = "*"
-ADA_KEY = "*"
-ADA_FEED = "io"
+ADA_USERNAME = "***"
+ADA_KEY = "***"
+ADA_FEED = "io"  # Feed nhận dữ liệu từ cảm biến
+ADA_CONTROL_FEED = "gowin-io"  # Feed để gửi trạng thái ON/OFF
 
 # Cấu hình App Core IoT
 CORE_BROKER = "app.coreiot.io"
@@ -19,19 +20,38 @@ CORE_ACCESS_USERNAME = "Quang_admin"
 # Hàm xử lý khi nhận dữ liệu từ Adafruit
 def on_adafruit_message(client, userdata, msg):
     payload = msg.payload.decode("utf-8")
-    print(f"📩 Nhận dữ liệu từ Adafruit: {payload}")
+    print(f"Nhận dữ liệu từ Adafruit: {payload}")
 
     try:
         data_value = float(payload)  # Chuyển đổi giá trị nhận được
         send_to_coreiot(data_value)  # Gửi dữ liệu lên App Core IoT
     except ValueError:
-        print("⚠️ Lỗi: Dữ liệu nhận không hợp lệ!")
+        print("Lỗi: Dữ liệu nhận không hợp lệ!")
 
-# Hàm gửi dữ liệu lên App Core IoT
+# Hàm xử lý khi nhận lệnh từ App Core IoT
+def recv_coreiot_message(client, userdata, message):
+    print(f"Nhận lệnh từ App Core IoT: {message.payload.decode('utf-8')}")
+    try:
+        jsonobj = json.loads(message.payload)
+        if jsonobj.get('method') == "setState":
+            param = jsonobj.get('params')
+            state = "ON" if param else "OFF"
+            print(f"Gửi trạng thái '{state}' lên Adafruit feed '{ADA_CONTROL_FEED}'")
+            send_to_adafruit_control(state)  # Gửi lệnh ON/OFF lên feed gowin-io
+    except json.JSONDecodeError:
+        print("Lỗi: Không thể phân tích cú pháp JSON!")
+
+# Gửi dữ liệu lên App Core IoT
 def send_to_coreiot(value):
-    collect_data = {'temperature': value}  # Chỉnh lại tên key nếu cần
+    collect_data = {'temperature': value}  # Chỉnh lại key nếu cần
     client_coreiot.publish('v1/devices/me/telemetry', json.dumps(collect_data), 1)
-    print(f"📤 Đã gửi dữ liệu lên App Core IoT: {collect_data}")
+    print(f"Đã gửi dữ liệu lên App Core IoT: {collect_data}")
+
+# Gửi trạng thái ON/OFF lên feed gowin-io của Adafruit IO
+def send_to_adafruit_control(state):
+    topic = f"{ADA_USERNAME}/feeds/{ADA_CONTROL_FEED}"
+    client_adafruit.publish(topic, state)
+    print(f"Đã gửi '{state}' lên Adafruit IO feed '{ADA_CONTROL_FEED}'")
 
 # Kết nối đến Adafruit IO
 client_adafruit = mqttclient.Client("Adafruit_Client")
@@ -43,7 +63,9 @@ client_adafruit.subscribe(f"{ADA_USERNAME}/feeds/{ADA_FEED}")
 # Kết nối đến App Core IoT
 client_coreiot = mqttclient.Client("GW1")
 client_coreiot.username_pw_set(CORE_ACCESS_USERNAME, CORE_ACCESS_TOKEN)
+client_coreiot.on_message = recv_coreiot_message  # Xử lý nhận tin nhắn từ Core IoT
 client_coreiot.connect(CORE_BROKER, CORE_PORT)
+client_coreiot.subscribe("v1/devices/me/rpc/request/+")
 
 # Bắt đầu vòng lặp để nhận dữ liệu
 client_adafruit.loop_start()
@@ -53,6 +75,6 @@ try:
     while True:
         time.sleep(5)  # Giữ kết nối liên tục
 except KeyboardInterrupt:
-    print("⏹️ Dừng chương trình...")
+    print("Dừng chương trình...")
     client_adafruit.loop_stop()
     client_coreiot.loop_stop()
