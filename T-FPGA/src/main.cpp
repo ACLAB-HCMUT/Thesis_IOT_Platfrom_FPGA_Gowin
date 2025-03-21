@@ -1,12 +1,32 @@
 #include <Arduino.h>
+#include <Wire.h>
 #include <WiFi.h>
+//#include "pins_config.h"  // Ensure this file defines PIN_LED, PIN_IIC_SDA, and PIN_IIC_SCL
+#include "XPowersLib.h" //https://github.com/lewisxhe/XPowersLib
 #include <Adafruit_MQTT.h>
 #include <Adafruit_MQTT_Client.h>
-#include "XPowersLib.h" //https://github.com/lewisxhe/XPowersLib
-#include "pins_config.h"
 
-#define WLAN_SSID       "Hong them"
-#define WLAN_PASS       "quang1234"
+// #pragma once
+
+// #define PIN_BTN      0
+
+// #define PIN_IIC_SDA  38
+// #define PIN_IIC_SCL  39
+// #define PIN_PMU_IRQ  40
+
+// #define PIN_LED      46
+
+// #define PIN_FPGA_CS  1
+// #define PIN_FPGA_SCK 2
+// #define PIN_FPGA_D0  3
+// #define PIN_FPGA_D1  5
+// #define PIN_FPGA_D2  6
+// #define PIN_FPGA_D3  4
+
+//cloud integration
+
+#define WLAN_SSID       "*"
+#define WLAN_PASS       "*"
 
 
 #define AIO_SERVER      "io.adafruit.com"
@@ -17,12 +37,14 @@
 
 WiFiClient client;
 Adafruit_MQTT_Client mqtt(&client, AIO_SERVER, AIO_SERVERPORT, AIO_USERNAME, AIO_KEY);
-//Feed để publishing
+//Publish feed
 Adafruit_MQTT_Publish feed = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME"/feeds/io");
-// Feed để subscribe
+Adafruit_MQTT_Publish myFeedPub_sensor_temp = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/temp");
+Adafruit_MQTT_Publish myFeedPub_sensor_humid = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/humid");
+//Subscribe feed
 Adafruit_MQTT_Subscribe myFeedSub_io = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME "/feeds/gowin-io");
-Adafruit_MQTT_Subscribe myFeedSub_sensor = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME "/feeds/light");
-// Kết nối WiFi
+
+//wifi connect
 void connectToWiFi() {
   Serial.print("Connecting to ");
   Serial.println(WLAN_SSID);
@@ -32,24 +54,22 @@ void connectToWiFi() {
     delay(500);
     Serial.print(".");
   }
-
   Serial.println("\nWiFi connected");
 }
 uint8_t receivedData = 0;
-uint8_t fpga_address = 0x30;
-void receiveData(){
-  // Read the data from FPGA
-    Wire1.requestFrom(fpga_address, 1);  // Request 1 byte
-    if (Wire1.available()) {
-        receivedData = Wire1.read();
-        Serial.print("Received data from FPGA: ");
-        Serial.println(receivedData);
-    } else {
-        Serial.println("No data received from FPGA.");
-    }
-};
-
-// Kết nối MQTT
+//uint8_t fpga_address = 0x34;
+// void receiveData(){
+//   // Read the data from FPGA
+//     Wire1.requestFrom(fpga_address, 1);  // Request 1 byte
+//     if (Wire1.available()) {
+//         receivedData = Wire1.read();
+//         Serial.print("Received data from FPGA: ");
+//         Serial.println(receivedData);
+//     } else {
+//         Serial.println("No data received from FPGA.");
+//     }
+// };
+//Mqtt connect
 void MQTT_connect() {
   int8_t ret;
   
@@ -68,15 +88,88 @@ void MQTT_connect() {
   
   Serial.println("MQTT Connected!");
 }
+//LED feed back
+void mqtt_Feedback(int duration){
+        for (int i = 0; i < duration; i++) {
+          digitalWrite(PIN_LED, HIGH);  
+          delay(250);                   
+          digitalWrite(PIN_LED, LOW);   
+          delay(250);                   
+        }
+}
 
+float humidity = 0.0;
+float temperature = 0.0;
 XPowersAXP2101 PMU;
+#define FPGA_ADDR 0x34  // FPGA I2C Slave Address
 
-void led_task(void *param);
-void fpga_led(uint8_t en);
+void scan_i2c_device(TwoWire &wire);
+void fpga_led(bool en);
+void read_fpga_status();
 
+
+// Function to turn FPGA LED ON/OFF
+void fpga_led(bool en)
+{
+    Wire1.beginTransmission(FPGA_ADDR);
+    Wire1.write(en);  // Send 1 (ON) or 0 (OFF)
+    uint8_t result = Wire1.endTransmission();
+    
+    if (result == 0) {
+        Serial.println("FPGA LED command sent successfully.");
+    } else {
+        Serial.print("I2C Write Error: ");
+        Serial.println(result);
+    }
+}
+
+// Function to read 5 bytes from FPGA
+void read_fpga_status()
+{
+    uint8_t register_data[5] = {0};  // Array to store received bytes
+
+    Wire1.requestFrom(FPGA_ADDR, 5);  // Request 5 bytes from FPGA
+
+    int i = 0;
+    while (Wire1.available() && i < 5) {
+        register_data[i] = Wire1.read();  // Store received 
+        Serial.printf("0x%02X ", register_data[i]);
+        i++;
+    }
+ Serial.println();
+    // Check if we successfully read all 5 bytes
+    // if (i == 5) {
+    //     Serial.print("Received 5 Bytes from FPGA: ");
+    //     for (int j = 0; j < 5; j++) {
+    //         Serial.printf("0x%02X ", register_data[j]);  // Print each byte in HEX format
+    //     }
+    //     Serial.println();
+    // } else {
+    //     Serial.println("Error: Incomplete data received from FPGA.");
+    // }
+
+    // Kiểm tra xem có nhận đủ 5 byte không
+if (i == 5) {
+    // Giải mã giá trị độ ẩm
+    uint16_t humidity_raw = (register_data[0] << 8) | register_data[1];
+    humidity = (humidity_raw / 65536.0) * 100.0;
+
+    // Giải mã giá trị nhiệt độ
+    uint16_t temperature_raw = (register_data[2] << 8) | register_data[3];
+    temperature = (temperature_raw / 65536.0) * 200.0 - 50.0;
+
+    // Hiển thị kết quả
+    Serial.printf("Humidity: %.2f%% RH\n", humidity);
+    Serial.printf("Temperature: %.2f°C\n", temperature);
+} else {
+    Serial.println("Error: Incomplete data received from FPGA.");
+}
+}
+//7a ad c6 5c d4
+// I2C Scanner function
 void scan_i2c_device(TwoWire &wire)
 {
-    Serial.println("Scanning for I2C devices ...");
+    Serial.println("Scanning for I2C devices...");
     Serial.print("      ");
     for (int i = 0; i < 0x10; i++) {
         Serial.printf("0x%02X|", i);
@@ -95,17 +188,9 @@ void scan_i2c_device(TwoWire &wire)
         }
     }
     Serial.println();
-    Serial.println("I2C device scan ends");
+    Serial.println("I2C scan complete.");
 }
-//LED feed back
-void mqtt_Feedback(int duration){
-        for (int i = 0; i < duration; i++) {
-          digitalWrite(PIN_LED, HIGH);  
-          delay(250);                   
-          digitalWrite(PIN_LED, LOW);   
-          delay(250);                   
-        }
-}
+
 void adaFruit_control(String feed_value){
       if (feed_value == "ON") {
         fpga_led(1);
@@ -122,70 +207,41 @@ void adaFruit_control(String feed_value){
         Serial.print("Stop reading\n");
       }
 }
-void sendingSuccess(int counts){
-  for(int i = 0; i < counts; i++){
-    PMU.setChargingLedMode(XPOWERS_CHG_LED_ON);
-    delay(250);
-    PMU.setChargingLedMode(XPOWERS_CHG_LED_OFF);
-    delay(250);
 
-  }
-}
+void publishing() {
+    // Đọc dữ liệu từ FPGA
+    read_fpga_status();
 
-TaskHandle_t ledTaskHandle = NULL;  // Define task handle for the LED task
-void led_task(void *param){
-    pinMode(PIN_LED, OUTPUT);
-    while (true) {
-        // Wait for the task to be resumed by publishing event
-        vTaskSuspend(NULL); //suspend the task until resumed
-        // Blink the LED
-        mqtt_Feedback(3);
-        // Suspend again after the blink
-        vTaskSuspend(NULL);
+    // Gửi giá trị độ ẩm lên feed Adafruit IO
+    if (!myFeedPub_sensor_humid.publish((float)humidity)) {
+        Serial.println("Failed to publish humidity data to Adafruit IO");
+    } else {
+        Serial.print("Published Humidity MQTT: ");
+        Serial.print(humidity);
+        Serial.println("% RH");
     }
+
+    // Gửi giá trị nhiệt độ lên feed Adafruit IO
+    if (!myFeedPub_sensor_temp.publish((float)temperature)) {
+        Serial.println("Failed to publish temperature data to Adafruit IO");
+    } else {
+        Serial.print("Published Temperature MQTT: ");
+        Serial.print(temperature);
+        Serial.println("°C");
+    }
+
+    //vTaskResume(ledTaskHandle);  // Kích hoạt lại task LED (nếu có)
+    delay(15000);  // Chờ 5 giây trước khi gửi dữ liệu tiếp theo
 }
 
-void fpga_led(uint8_t en)
+void setup()
 {
-    Wire1.beginTransmission(0x30);
-    Wire1.write(en);
-    Wire1.endTransmission();
-}
-
- unsigned long lastPublishTime = 0;  // To store the last publish time
- unsigned long publishInterval = 15000;  // Minimum interval 
-
-void publishing(){
-    receiveData();
-    //unsigned long currentTime = millis();  // Get the current time
-
-    //if (currentTime - lastPublishTime >= publishInterval) {
-      if (!feed.publish((uint8_t)receivedData)) {
-        Serial.println("Failed to publish received data");
-      } else {
-        Serial.print("Published to Adafruit IO: ");
-        Serial.println(receivedData);
-        vTaskResume(ledTaskHandle);
-        //lastPublishTime = currentTime;  // Update last publish time
-      }
-      delay (5000);
-    } 
-    // else {
-    //   Serial.println("Skipping publish to avoid rate limit");
-    // } 
-//}
-
-
-void setup() {
-  Serial.begin(115200);        
-
-  connectToWiFi();
-  PMU.setChargingLedMode(XPOWERS_CHG_LED_OFF);
-  mqtt.subscribe(&myFeedSub_io);
-  mqtt.subscribe(&myFeedSub_sensor);
-
+    Serial.begin(115200);
+    pinMode(PIN_LED, OUTPUT);
     Serial.println("Hello T-FPGA-CORE");
-    xTaskCreatePinnedToCore(led_task, "led_task", 1024, NULL, 1, &ledTaskHandle, 1);
+    connectToWiFi();
+    PMU.setChargingLedMode(XPOWERS_CHG_LED_OFF);
+    mqtt.subscribe(&myFeedSub_io);
 
     bool result = PMU.begin(Wire, AXP2101_SLAVE_ADDRESS, PIN_IIC_SDA, PIN_IIC_SCL);
 
@@ -194,7 +250,7 @@ void setup() {
         while (1)
             delay(50);
     }
-
+  
     PMU.setDC4Voltage(1200);   // Here is the FPGA core voltage. Careful review of the manual is required before modification.
     PMU.setALDO1Voltage(3300); // BANK0 area voltage
     PMU.setALDO2Voltage(3300); // BANK1 area voltage
@@ -207,11 +263,19 @@ void setup() {
     PMU.enableALDO4();
 
     delay(1000);
-    Wire1.begin(PIN_FPGA_D0, PIN_FPGA_SCK);
+
+    // Initialize I2C (Wire1 for FPGA communication)
+    Wire1.begin(PIN_IIC_SDA, PIN_IIC_SCL, 400000);  // SDA, SCL, 400kHz speed
+
+    //delay(1000);
+
+    // Scan I2C devices
     scan_i2c_device(Wire1);
 }
-uint8_t en = 0;
-void loop() { 
+
+void loop()
+{   
+
   // Kết nối MQTT
   MQTT_connect();
   PMU.setChargingLedMode(XPOWERS_CHG_LED_ON);
@@ -224,25 +288,18 @@ void loop() {
       Serial.print("Received: ");
       Serial.println(value);
       adaFruit_control(value);
-      publishing();
-      Serial.print("Data Updated\n");
-    }
-    if (subscription == &myFeedSub_sensor) {
-      // Nhận lệnh từ Adafruit IO
-      String cmd = (char *)myFeedSub_sensor.lastread;
-      Serial.print("Received: ");
-      Serial.println(cmd);
-      adaFruit_control(cmd);
       //publishing();
       Serial.print("Data Updated\n");
     }
-
   }
-  //fpga_led(en);
-  //en++;
-  //if (en == 5) //sendingSuccess(5);
-  //if (en == 10) en = 0;
-  //publishing();
-  //mqtt.processPackets(10000);
-  //mqtt.ping();
+  publishing();
+    // fpga_led(false);
+    // delay(1000); 
+ 
+    // fpga_led(true);
+    // delay(1000);   
+    
+    // // Read FPGA response
+    // read_fpga_status();
+    // delay(5000);
 }
