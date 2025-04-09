@@ -1,43 +1,43 @@
 [
  {
-  "InstFile" : "/home/quang1806/Desktop/AHT10/aht10/src/i2c_top4.v",
+  "InstFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/src/i2c_top4.v",
   "InstLine" : 1,
   "InstName" : "topmodule",
-  "ModuleFile" : "/home/quang1806/Desktop/AHT10/aht10/src/i2c_top4.v",
+  "ModuleFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/src/i2c_top4.v",
   "ModuleLine" : 1,
   "ModuleName" : "topmodule",
   "SubInsts" : [
    {
-    "InstFile" : "/home/quang1806/Desktop/AHT10/aht10/src/i2c_top4.v",
+    "InstFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/src/i2c_top4.v",
     "InstLine" : 52,
     "InstName" : "i2c_inst",
-    "ModuleFile" : "/home/quang1806/Desktop/AHT10/aht10/src/i2c_control_4.v",
+    "ModuleFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/src/i2c_control_4.v",
     "ModuleLine" : 1,
     "ModuleName" : "i2c_control",
     "SubInsts" : [
      {
-      "InstFile" : "/home/quang1806/Desktop/AHT10/aht10/src/i2c_control_4.v",
+      "InstFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/src/i2c_control_4.v",
       "InstLine" : 56,
       "InstName" : "i2c_bit_shift_inst",
-      "ModuleFile" : "/home/quang1806/Desktop/AHT10/aht10/src/i2c_bit_shift.v",
+      "ModuleFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/src/i2c_bit_shift.v",
       "ModuleLine" : 1,
       "ModuleName" : "i2c_bit_shift"
      }
     ]
    },
    {
-    "InstFile" : "/home/quang1806/Desktop/AHT10/aht10/src/i2c_top4.v",
+    "InstFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/src/i2c_top4.v",
     "InstLine" : 76,
     "InstName" : "uart_inst",
-    "ModuleFile" : "/home/quang1806/Desktop/AHT10/aht10/src/uart_data_tx.v",
+    "ModuleFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/src/uart_data_tx.v",
     "ModuleLine" : 42,
     "ModuleName" : "uart_data_tx",
     "SubInsts" : [
      {
-      "InstFile" : "/home/quang1806/Desktop/AHT10/aht10/src/uart_data_tx.v",
+      "InstFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/src/uart_data_tx.v",
       "InstLine" : 74,
       "InstName" : "uart_byte_tx",
-      "ModuleFile" : "/home/quang1806/Desktop/AHT10/aht10/src/uart_byte_tx.v",
+      "ModuleFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/src/uart_byte_tx.v",
       "ModuleLine" : 20,
       "ModuleName" : "uart_byte_tx"
      }

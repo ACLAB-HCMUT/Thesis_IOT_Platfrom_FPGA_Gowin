@@ -1,0 +1,15 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW5A-25A" pn="GW5A-LV25UG324ES">gw5a25a-006</Device>
+    <FileList>
+        <File path="src/i2c.v" type="file.verilog" enable="0"/>
+        <File path="src/i2c_slave.v" type="file.verilog" enable="0"/>
+        <File path="src/i2c_slave_multiplebyte.v" type="file.verilog" enable="1"/>
+        <File path="src/led.v" type="file.verilog" enable="0"/>
+        <File path="src/top.v" type="file.verilog" enable="1"/>
+        <File path="src/i2c-slave.cst" type="file.cst" enable="1"/>
+    </FileList>
+</Project>

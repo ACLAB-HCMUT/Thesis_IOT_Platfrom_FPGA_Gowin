@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Module name="uart_loopback" Register="68" Lut="3">
- <SubModule name="uart_data_rx" Register="157" Lut="130">
-  <SubModule name="uart_byte_rx" Register="69" Lut="102"/>
- </SubModule>
- <SubModule name="uart_data_tx" Register="82" Lut="84">
-  <SubModule name="uart_byte_tx" Register="32" Lut="51"/>
- </SubModule>
-</Module>

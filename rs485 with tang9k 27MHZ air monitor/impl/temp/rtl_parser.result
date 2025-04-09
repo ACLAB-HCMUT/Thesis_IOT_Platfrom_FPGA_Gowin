@@ -1,0 +1,66 @@
+[
+ {
+  "InstFile" : "/home/quang1806/Desktop/TANG9K/rs485/src/top2.v",
+  "InstLine" : 1,
+  "InstName" : "uart_loopback",
+  "ModuleFile" : "/home/quang1806/Desktop/TANG9K/rs485/src/top2.v",
+  "ModuleLine" : 1,
+  "ModuleName" : "uart_loopback",
+  "SubInsts" : [
+   {
+    "InstFile" : "/home/quang1806/Desktop/TANG9K/rs485/src/top2.v",
+    "InstLine" : 111,
+    "InstName" : "u_sensor_tx",
+    "ModuleFile" : "/home/quang1806/Desktop/TANG9K/rs485/src/uart_data_tx.v",
+    "ModuleLine" : 31,
+    "ModuleName" : "uart_data_tx",
+    "SubInsts" : [
+     {
+      "InstFile" : "/home/quang1806/Desktop/TANG9K/rs485/src/uart_data_tx.v",
+      "InstLine" : 63,
+      "InstName" : "uart_byte_tx",
+      "ModuleFile" : "/home/quang1806/Desktop/TANG9K/rs485/src/uart_byte_tx.v",
+      "ModuleLine" : 1,
+      "ModuleName" : "uart_byte_tx"
+     }
+    ]
+   },
+   {
+    "InstFile" : "/home/quang1806/Desktop/TANG9K/rs485/src/top2.v",
+    "InstLine" : 130,
+    "InstName" : "u_sensor_rx",
+    "ModuleFile" : "/home/quang1806/Desktop/TANG9K/rs485/src/uart_data_rx.v",
+    "ModuleLine" : 31,
+    "ModuleName" : "uart_data_rx",
+    "SubInsts" : [
+     {
+      "InstFile" : "/home/quang1806/Desktop/TANG9K/rs485/src/uart_data_rx.v",
+      "InstLine" : 62,
+      "InstName" : "uart_byte_rx",
+      "ModuleFile" : "/home/quang1806/Desktop/TANG9K/rs485/src/uart_byte_rx.v",
+      "ModuleLine" : 1,
+      "ModuleName" : "uart_byte_rx"
+     }
+    ]
+   },
+   {
+    "InstFile" : "/home/quang1806/Desktop/TANG9K/rs485/src/top2.v",
+    "InstLine" : 150,
+    "InstName" : "u_pc_tx",
+    "ModuleFile" : "/home/quang1806/Desktop/TANG9K/rs485/src/uart_data_tx.v",
+    "ModuleLine" : 31,
+    "ModuleName" : "uart_data_tx",
+    "SubInsts" : [
+     {
+      "InstFile" : "/home/quang1806/Desktop/TANG9K/rs485/src/uart_data_tx.v",
+      "InstLine" : 63,
+      "InstName" : "uart_byte_tx",
+      "ModuleFile" : "/home/quang1806/Desktop/TANG9K/rs485/src/uart_byte_tx.v",
+      "ModuleLine" : 1,
+      "ModuleName" : "uart_byte_tx"
+     }
+    ]
+   }
+  ]
+ }
+]

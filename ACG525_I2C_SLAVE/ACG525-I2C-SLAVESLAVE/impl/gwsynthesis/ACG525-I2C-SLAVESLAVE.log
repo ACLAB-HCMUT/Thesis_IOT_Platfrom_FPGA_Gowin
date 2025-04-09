@@ -1,0 +1,15 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file '/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/i2c_slave_multiplebyte.v'
+Analyzing Verilog file '/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/top.v'
+WARN  (EX3073) : Port 'dht20_data' remains unconnected for this instance("/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/top.v":17)
+Compiling module 'i2c'("/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/top.v":1)
+Compiling module 'iic_slave_design'("/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/i2c_slave_multiplebyte.v":3)
+WARN  (EX2420) : Latch inferred for net 'iic_sda_shadow'; We do not recommend the use of latches in FPGA designs, as they may lead to timing problems("/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/i2c_slave_multiplebyte.v":14)
+ERROR (EX2000) : Net 'bitcnt[5]' is constantly driven from multiple places("/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/i2c_slave_multiplebyte.v":42)
+ERROR (EX1999) : Found another driver here("/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/i2c_slave_multiplebyte.v":86)
+Module 'iic_slave_design' remains a black box due to errors in its contents("/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/i2c_slave_multiplebyte.v":3)
+WARN  (EX3670) : Actual bit length 7 differs from formal bit length 8 for port 'slave_addr'("/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/top.v":15)
+WARN  (EX3670) : Actual bit length 40 differs from formal bit length 8 for port 'IOout'("/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/top.v":16)
+Compiling module 'led_module'("/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/top.v":38)
+GowinSynthesis finish

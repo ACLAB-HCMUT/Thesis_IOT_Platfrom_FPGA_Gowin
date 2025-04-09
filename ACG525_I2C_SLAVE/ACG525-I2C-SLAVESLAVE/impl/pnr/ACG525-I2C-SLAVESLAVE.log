@@ -1,0 +1,27 @@
+Reading netlist file: "/home/quang1806/Desktop/Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/impl/gwsynthesis/ACG525-I2C-SLAVESLAVE.vg"
+Parsing netlist file "/home/quang1806/Desktop/Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/impl/gwsynthesis/ACG525-I2C-SLAVESLAVE.vg" completed
+Processing netlist completed
+Reading constraint file: "/home/quang1806/Desktop/Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/i2c-slave.cst"
+Physical Constraint parsed completed
+Running placement......
+[10%] Placement Phase 0 completed
+[20%] Placement Phase 1 completed
+[30%] Placement Phase 2 completed
+[50%] Placement Phase 3 completed
+Running routing......
+[60%] Routing Phase 0 completed
+[70%] Routing Phase 1 completed
+[80%] Routing Phase 2 completed
+WARN  (PR1014) : Generic routing resource will be used to clock signal 'iic_scl_d' by the specified constraint. And then it may lead to the excessive delay or skew
+[90%] Routing Phase 3 completed
+Running timing analysis......
+[95%] Timing analysis completed
+Placement and routing completed
+Bitstream generation in progress......
+Bitstream generation completed
+Generate file "/home/quang1806/Desktop/Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/impl/pnr/ACG525-I2C-SLAVESLAVE.pin.html" completed
+Generate file "/home/quang1806/Desktop/Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/impl/pnr/ACG525-I2C-SLAVESLAVE.rpt.html" completed
+Generate file "/home/quang1806/Desktop/Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/impl/pnr/ACG525-I2C-SLAVESLAVE.rpt.txt" completed
+Generate file "/home/quang1806/Desktop/Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/impl/pnr/ACG525-I2C-SLAVESLAVE.tr.html" completed
+Thu Mar  6 11:21:22 2025
+

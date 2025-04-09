@@ -1,0 +1,21 @@
+{
+ "Device" : "GW5A-25A",
+ "Files" : [
+  {
+   "Path" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/i2c_slave_multiplebyte.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/top.v",
+   "Type" : "verilog"
+  }
+ ],
+ "IncludePath" : [
+
+ ],
+ "LoopLimit" : 2000,
+ "ResultFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/impl/temp/rtl_parser.result",
+ "Top" : "",
+ "VerilogStd" : "verilog_2001",
+ "VhdlStd" : "vhdl_93"
+}

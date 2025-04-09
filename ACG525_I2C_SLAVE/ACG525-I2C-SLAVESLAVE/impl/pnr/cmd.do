@@ -1,0 +1,12 @@
+-d /home/quang1806/Desktop/Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/impl/gwsynthesis/ACG525-I2C-SLAVESLAVE.vg
+-p GW5A-25A-UBGA324-1
+-pn GW5A-LV25UG324ES
+-cst /home/quang1806/Desktop/Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/i2c-slave.cst
+-cfg /home/quang1806/Desktop/Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/impl/pnr/device.cfg
+-bit
+-tr
+-ph
+-timing
+-cst_error
+-correct_hold 1
+-route_maxfan 23

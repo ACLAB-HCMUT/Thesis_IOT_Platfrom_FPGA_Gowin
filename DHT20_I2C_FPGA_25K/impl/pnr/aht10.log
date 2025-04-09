@@ -7,6 +7,7 @@ Running placement......
 [10%] Placement Phase 0 completed
 [20%] Placement Phase 1 completed
 [30%] Placement Phase 2 completed
+WARN  (TA1132) :  'Clk' was determined to be a clock but was not created.
 [50%] Placement Phase 3 completed
 Running routing......
 [60%] Routing Phase 0 completed
@@ -18,9 +19,12 @@ Running timing analysis......
 Placement and routing completed
 Bitstream generation in progress......
 Bitstream generation completed
+Running power analysis......
+[100%] Power analysis completed
+Generate file "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/pnr/aht10.power.html" completed
 Generate file "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/pnr/aht10.pin.html" completed
 Generate file "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/pnr/aht10.rpt.html" completed
 Generate file "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/pnr/aht10.rpt.txt" completed
 Generate file "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/DHT20_I2C_FPGA_25K/impl/pnr/aht10.tr.html" completed
-Thu Mar  6 12:59:44 2025
+Sat Mar  8 10:43:51 2025
 

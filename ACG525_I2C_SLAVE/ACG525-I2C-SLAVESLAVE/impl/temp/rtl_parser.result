@@ -1,0 +1,10 @@
+[
+ {
+  "InstFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/i2c_slave.v",
+  "InstLine" : 3,
+  "InstName" : "iic_slave_design",
+  "ModuleFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/ACG525_I2C_SLAVE/ACG525-I2C-SLAVESLAVE/src/i2c_slave.v",
+  "ModuleLine" : 3,
+  "ModuleName" : "iic_slave_design"
+ }
+]

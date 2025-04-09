@@ -1,0 +1,33 @@
+{
+ "Device" : "GW1NR-9C",
+ "Files" : [
+  {
+   "Path" : "/home/quang1806/Desktop/TANG9K/rs485/src/top2.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/quang1806/Desktop/TANG9K/rs485/src/uart_byte_rx.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/quang1806/Desktop/TANG9K/rs485/src/uart_byte_tx.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/quang1806/Desktop/TANG9K/rs485/src/uart_data_rx.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "/home/quang1806/Desktop/TANG9K/rs485/src/uart_data_tx.v",
+   "Type" : "verilog"
+  }
+ ],
+ "IncludePath" : [
+
+ ],
+ "LoopLimit" : 2000,
+ "ResultFile" : "/home/quang1806/Desktop/TANG9K/rs485/impl/temp/rtl_parser.result",
+ "Top" : "",
+ "VerilogStd" : "verilog_2001",
+ "VhdlStd" : "vhdl_93"
+}

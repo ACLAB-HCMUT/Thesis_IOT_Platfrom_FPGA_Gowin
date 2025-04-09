@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="uart_loopback" Register="125" Alu="31" Lut="117" T_Register="516(125)" T_Alu="31(31)" T_Lut="588(117)">
+ <SubModule name="u_sensor_tx" Register="45" Lut="54" T_Register="76(45)" T_Lut="101(54)">
+  <SubModule name="uart_byte_tx" Register="31" Lut="47" T_Register="31(31)" T_Lut="47(47)"/>
+ </SubModule>
+ <SubModule name="u_sensor_rx" Register="140" Lut="124" T_Register="209(140)" T_Lut="245(124)">
+  <SubModule name="uart_byte_rx" Register="69" Lut="121" T_Register="69(69)" T_Lut="121(121)"/>
+ </SubModule>
+ <SubModule name="u_pc_tx" Register="74" Lut="76" T_Register="106(74)" T_Lut="125(76)">
+  <SubModule name="uart_byte_tx" Register="32" Lut="49" T_Register="32(32)" T_Lut="49(49)"/>
+ </SubModule>
+</Module>
