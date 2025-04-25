@@ -83,7 +83,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">Created Time</td>
-<td>Sat Mar  8 10:43:51 2025
+<td>Fri Apr 25 11:18:44 2025
 </td>
 </tr>
 <tr>
@@ -97,24 +97,24 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <tr>
 <td class="label">Place & Route Process</td>
 <td>Running placement:
-   Placement Phase 0: CPU time = 0h 0m 0.104s, Elapsed time = 0h 0m 0.102s
-   Placement Phase 1: CPU time = 0h 0m 0.431s, Elapsed time = 0h 0m 0.426s
-   Placement Phase 2: CPU time = 0h 0m 0.161s, Elapsed time = 0h 0m 0.155s
-   Placement Phase 3: CPU time = 0h 0m 1s, Elapsed time = 0h 0m 1s
-   Total Placement: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s
+   Placement Phase 0: CPU time = 0h 0m 0.167s, Elapsed time = 0h 0m 0.161s
+   Placement Phase 1: CPU time = 0h 0m 0.482s, Elapsed time = 0h 0m 0.476s
+   Placement Phase 2: CPU time = 0h 0m 0.182s, Elapsed time = 0h 0m 0.176s
+   Placement Phase 3: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s
+   Total Placement: CPU time = 0h 0m 3s, Elapsed time = 0h 0m 3s
 Running routing:
    Routing Phase 0: CPU time = 0h 0m 0.001s, Elapsed time = 0h 0m 0.001s
-   Routing Phase 1: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s
-   Routing Phase 2: CPU time = 0h 0m 0.051s, Elapsed time = 0h 0m 0.049s
+   Routing Phase 1: CPU time = 0h 0m 3s, Elapsed time = 0h 0m 3s
+   Routing Phase 2: CPU time = 0h 0m 0.075s, Elapsed time = 0h 0m 0.065s
    Routing Phase 3: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s
-   Total Routing: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s
+   Total Routing: CPU time = 0h 0m 3s, Elapsed time = 0h 0m 3s
 Generate output files:
    CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s
 </td>
 </tr>
 <tr>
 <td class="label">Total Time and Memory Usage</td>
-<td>CPU time = 0h 0m 6s, Elapsed time = 0h 0m 6s, Peak memory usage = 611MB</td>
+<td>CPU time = 0h 0m 8s, Elapsed time = 0h 0m 8s, Peak memory usage = 858MB</td>
 </tr>
 </table>
 <br/>
@@ -129,12 +129,12 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">Logic</td>
-<td>433/23040</td>
-<td>2%</td>
+<td>466/23040</td>
+<td>3%</td>
 </tr>
 <tr>
 <td class="label">&nbsp &nbsp --LUT,ALU,ROM16</td>
-<td>433(433 LUT, 0 ALU, 0 ROM16)</td>
+<td>466(466 LUT, 0 ALU, 0 ROM16)</td>
 <td>-</td>
 </tr>
 <tr>
@@ -169,7 +169,7 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">CLS</td>
-<td>305/11520</td>
+<td>319/11520</td>
 <td>3%</td>
 </tr>
 <tr>
@@ -214,7 +214,7 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">bank 2</td>
-<td>2/27</td><td>8%</td>
+<td>0/27</td><td>0%</td>
 </tr>
 <tr>
 <td class="label">bank 3</td>
@@ -222,7 +222,7 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">bank 4</td>
-<td>1/35</td><td>3%</td>
+<td>3/35</td><td>9%</td>
 </tr>
 <tr>
 <td class="label">bank 5</td>
@@ -280,7 +280,7 @@ Generate output files:
 <tr>
 <td class="label">Clk_d</td>
 <td>PRIMARY</td>
-<td> TR BR BL</td>
+<td> TR TL BR BL</td>
 </tr>
 <tr>
 <td class="label">Rst_n_d</td>
@@ -378,10 +378,10 @@ Generate output files:
 <tr>
 <td class="label">i2c_sclk</td>
 <td>-</td>
-<td>C17/2</td>
+<td>U11/4</td>
 <td>Y</td>
 <td>out</td>
-<td>IOR9[A]</td>
+<td>IOB39[A]</td>
 <td>-</td>
 <td>LVCMOS33</td>
 <td>8</td>
@@ -399,11 +399,11 @@ Generate output files:
 <tr>
 <td class="label">i2c_sdat</td>
 <td>-</td>
-<td>C18/2</td>
+<td>V11/4</td>
 <td>Y</td>
 <td>io</td>
-<td>IOR9[B]</td>
-<td>MCKTEST</td>
+<td>IOB39[B]</td>
+<td>-</td>
 <td>LVCMOS33</td>
 <td>8</td>
 <td>NONE</td>
@@ -2741,15 +2741,15 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">U11/4</td>
-<td>-</td>
-<td>in</td>
+<td>i2c_sclk</td>
+<td>out</td>
 <td>IOB39[A]</td>
 <td>-</td>
 <td>LVCMOS33</td>
 <td>8</td>
-<td>UP</td>
+<td>NONE</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
@@ -2760,15 +2760,15 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">V11/4</td>
-<td>-</td>
-<td>in</td>
+<td>i2c_sdat</td>
+<td>io</td>
 <td>IOB39[B]</td>
 <td>-</td>
 <td>LVCMOS33</td>
 <td>8</td>
-<td>UP</td>
+<td>NONE</td>
 <td>OFF</td>
-<td>ON</td>
+<td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
@@ -4204,15 +4204,15 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">C17/2</td>
-<td>i2c_sclk</td>
-<td>out</td>
+<td>-</td>
+<td>in</td>
 <td>IOR9[A]</td>
 <td>-</td>
 <td>LVCMOS33</td>
 <td>8</td>
-<td>NONE</td>
+<td>UP</td>
 <td>OFF</td>
-<td>OFF</td>
+<td>ON</td>
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>
@@ -4223,15 +4223,15 @@ Generate output files:
 </tr>
 <tr>
 <td class="label">C18/2</td>
-<td>i2c_sdat</td>
-<td>io</td>
+<td>-</td>
+<td>in</td>
 <td>IOR9[B]</td>
 <td>MCKTEST</td>
 <td>LVCMOS33</td>
 <td>8</td>
-<td>NONE</td>
+<td>UP</td>
 <td>OFF</td>
-<td>OFF</td>
+<td>ON</td>
 <td>OFF</td>
 <td>OFF</td>
 <td>OFF</td>

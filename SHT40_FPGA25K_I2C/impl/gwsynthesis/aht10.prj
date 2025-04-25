@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-synthesis-project>
+<Project>
+    <Version>beta</Version>
+    <Device id="GW5A-25A" package="UBGA324" speed="1" partNumber="GW5A-LV25UG324ES"/>
+    <FileList>
+        <File path="/home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/src/i2c_bit_shift.v" type="verilog"/>
+        <File path="/home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/src/i2c_control_4.v" type="verilog"/>
+        <File path="/home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/src/i2c_top4.v" type="verilog"/>
+        <File path="/home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/src/uart_byte_tx.v" type="verilog"/>
+        <File path="/home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/src/uart_data_tx.v" type="verilog"/>
+    </FileList>
+    <OptionList>
+        <Option type="disable_insert_pad" value="0"/>
+        <Option type="enable_dsrm" value="0"/>
+        <Option type="global_freq" value="100.000"/>
+        <Option type="looplimit" value="2000"/>
+        <Option type="output_file" value="/home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/impl/gwsynthesis/aht10.vg"/>
+        <Option type="print_all_synthesis_warning" value="0"/>
+        <Option type="ram_rw_check" value="0"/>
+        <Option type="vcc" value="0.9"/>
+        <Option type="verilog_language" value="verilog-2001"/>
+        <Option type="vhdl_language" value="vhdl-1993"/>
+    </OptionList>
+</Project>

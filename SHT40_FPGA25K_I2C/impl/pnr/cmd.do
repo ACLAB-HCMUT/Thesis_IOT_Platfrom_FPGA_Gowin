@@ -1,0 +1,17 @@
+-d /home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/impl/gwsynthesis/aht10.vg
+-p GW5A-25A-UBGA324-1
+-pn GW5A-LV25UG324ES
+-cst /home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/src/i2c_dht2_version3.cst
+-cfg /home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/impl/pnr/device.cfg
+-bit
+-tr
+-ph
+-timing
+-cst_error
+-convert_sdp32_36_to_sdp16_18
+-place_option 0
+-route_option 0
+-correct_hold 1
+-route_maxfan 23
+-global_freq 100.000
+-enable_dsrm 0

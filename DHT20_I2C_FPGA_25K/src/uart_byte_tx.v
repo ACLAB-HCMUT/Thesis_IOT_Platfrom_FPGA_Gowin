@@ -1,21 +1,3 @@
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 武汉芯路恒科技有限公司
-// Engineer: 小梅哥团队
-// Web: www.corecourse.cn
-// 
-// Create Date: 2020/07/20 00:00:00
-// Design Name: uart_tx
-// Module Name: uart_byte_tx
-// Project Name: uart_tx
-// Description: 串口发送模块
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
 module uart_byte_tx(
 	Clk,

@@ -1,0 +1,30 @@
+Reading netlist file: "/home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/impl/gwsynthesis/aht10.vg"
+Parsing netlist file "/home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/impl/gwsynthesis/aht10.vg" completed
+Processing netlist completed
+Reading constraint file: "/home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/src/i2c_dht2_version3.cst"
+Physical Constraint parsed completed
+Running placement......
+[10%] Placement Phase 0 completed
+[20%] Placement Phase 1 completed
+[30%] Placement Phase 2 completed
+WARN  (TA1132) :  'Clk' was determined to be a clock but was not created.
+[50%] Placement Phase 3 completed
+Running routing......
+[60%] Routing Phase 0 completed
+[70%] Routing Phase 1 completed
+[80%] Routing Phase 2 completed
+[90%] Routing Phase 3 completed
+Running timing analysis......
+[95%] Timing analysis completed
+Placement and routing completed
+Bitstream generation in progress......
+Bitstream generation completed
+Running power analysis......
+[100%] Power analysis completed
+Generate file "/home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/impl/pnr/aht10.power.html" completed
+Generate file "/home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/impl/pnr/aht10.pin.html" completed
+Generate file "/home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/impl/pnr/aht10.rpt.html" completed
+Generate file "/home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/impl/pnr/aht10.rpt.txt" completed
+Generate file "/home/quang1806/Downloads/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K (2)/Thesis_IOT_Platfrom_FPGA_Gowin-fpga-ACG525-25K/DHT20_I2C_FPGA_25K/impl/pnr/aht10.tr.html" completed
+Fri Apr 25 10:57:11 2025
+

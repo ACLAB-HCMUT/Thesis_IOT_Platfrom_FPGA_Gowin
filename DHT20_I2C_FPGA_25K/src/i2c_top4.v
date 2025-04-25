@@ -47,8 +47,7 @@ module topmodule(
     localparam DELAY        = 4'b0110; // New state for delay
     localparam IDLE0        = 4'b0111;
     localparam WAIT_0       = 4'b1000;
-
-    // Instantiate I2C Controller
+    localparam WAIT_UART_DONE=4'b1001;
     i2c_control i2c_inst (
         .Clk(Clk),
         .Rst_n(Rst_n),
@@ -174,37 +173,34 @@ module topmodule(
 
                 PROCESS_DATA: begin
                     uart_data <= {hum,temp}; // Combine humidity and temperature
-                    state <=DELAY;
+                    state <=SEND_UART;
                 end
+               SEND_UART: begin
+                      send_en_uart <= 1;  // Trigger UART
+                    state <= WAIT_UART_DONE;
+                 end
+                
 
-                // SEND_UART: begin
-                //     if (!send_en_uart) begin
-                //         send_en_uart <= 1;
-                //     end else if (Tx_Done) begin
-                //         send_en_uart <= 0;
-                //         state <= DELAY; // Transition to delay state
-                //     end
-                // end
+                WAIT_UART_DONE: begin
+                send_en_uart <= 0;  // Deassert trigger after 1 cycle
+            if (Tx_Done) begin
+                    state <= DELAY;
+                end
+end
 
-                // DELAY: begin
-                //     if (delay_counter < 32'd250_000_000) begin // 5 seconds delay (assuming 50 MHz clock)
-                //         delay_counter <= delay_counter + 1;
-                //     end else begin
-                //         delay_counter <= 0;
-                //         state <= IDLE; // Go back to IDLE state after delay
-                //     end
-                // end
+          
+                    
                     DELAY: begin
                     if (delay_counter1 < 32'd250_000_000) begin // 5 seconds delay (assuming 50 MHz clock)
                         delay_counter1 <= delay_counter1 + 1;
-                         send_en_uart <= 0;
+                     //    send_en_uart <= 0;
                     end else begin
                         delay_counter1 <= 0;
-                         send_en_uart <= 1;
-                         if(Tx_Done)begin
+                      //   send_en_uart <= 1;
+                   //      if(Tx_Done)begin
                         state <= IDLE0; // Go back to IDLE state after delay
-                        send_en_uart<=0;
-                         end
+                //       send_en_uart<=0;
+                    //     end
                     end
                 end
                 default: state <= IDLE0;

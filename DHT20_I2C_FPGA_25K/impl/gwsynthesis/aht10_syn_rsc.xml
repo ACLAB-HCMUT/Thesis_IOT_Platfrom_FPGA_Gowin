@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="topmodule" Register="117" Lut="159" T_Register="304(117)" T_Lut="434(159)">
- <SubModule name="i2c_inst" Register="67" Lut="84" T_Register="97(67)" T_Lut="165(84)">
-  <SubModule name="i2c_bit_shift_inst" Register="30" Lut="81" T_Register="30(30)" T_Lut="81(81)"/>
+<Module name="topmodule" Register="117" Lut="173" T_Register="304(117)" T_Lut="467(173)">
+ <SubModule name="i2c_inst" Register="67" Lut="92" T_Register="97(67)" T_Lut="184(92)">
+  <SubModule name="i2c_bit_shift_inst" Register="30" Lut="92" T_Register="30(30)" T_Lut="92(92)"/>
  </SubModule>
  <SubModule name="uart_inst" Register="58" Lut="61" T_Register="90(58)" T_Lut="110(61)">
   <SubModule name="uart_byte_tx" Register="32" Lut="49" T_Register="32(32)" T_Lut="49(49)"/>
