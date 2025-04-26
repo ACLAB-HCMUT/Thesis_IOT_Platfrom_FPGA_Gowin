@@ -1,0 +1,48 @@
+[
+ {
+  "InstFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/M5_BMP280/src/i2c_top4.v",
+  "InstLine" : 1,
+  "InstName" : "topmodule",
+  "ModuleFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/M5_BMP280/src/i2c_top4.v",
+  "ModuleLine" : 1,
+  "ModuleName" : "topmodule",
+  "SubInsts" : [
+   {
+    "InstFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/M5_BMP280/src/i2c_top4.v",
+    "InstLine" : 52,
+    "InstName" : "i2c_inst",
+    "ModuleFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/M5_BMP280/src/i2c_control_4.v",
+    "ModuleLine" : 1,
+    "ModuleName" : "i2c_control",
+    "SubInsts" : [
+     {
+      "InstFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/M5_BMP280/src/i2c_control_4.v",
+      "InstLine" : 56,
+      "InstName" : "i2c_bit_shift_inst",
+      "ModuleFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/M5_BMP280/src/i2c_bit_shift.v",
+      "ModuleLine" : 1,
+      "ModuleName" : "i2c_bit_shift"
+     }
+    ]
+   },
+   {
+    "InstFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/M5_BMP280/src/i2c_top4.v",
+    "InstLine" : 76,
+    "InstName" : "uart_inst",
+    "ModuleFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/M5_BMP280/src/uart_data_tx.v",
+    "ModuleLine" : 30,
+    "ModuleName" : "uart_data_tx",
+    "SubInsts" : [
+     {
+      "InstFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/M5_BMP280/src/uart_data_tx.v",
+      "InstLine" : 62,
+      "InstName" : "uart_byte_tx",
+      "ModuleFile" : "/home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/M5_BMP280/src/uart_byte_tx.v",
+      "ModuleLine" : 3,
+      "ModuleName" : "uart_byte_tx"
+     }
+    ]
+   }
+  ]
+ }
+]

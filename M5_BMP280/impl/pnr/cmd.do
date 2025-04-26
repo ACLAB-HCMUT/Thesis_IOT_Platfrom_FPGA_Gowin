@@ -1,0 +1,17 @@
+-d /home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/M5_BMP280/impl/gwsynthesis/M5_BMP280.vg
+-p GW5A-25A-UBGA324-2
+-pn GW5A-LV25UG324C2/I1
+-cst /home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/M5_BMP280/src/i2c_dht2_version3.cst
+-cfg /home/quang1806/Desktop/LVTN/Thesis_IOT_Platfrom_FPGA_Gowin/M5_BMP280/impl/pnr/device.cfg
+-bit
+-tr
+-ph
+-timing
+-cst_error
+-convert_sdp32_36_to_sdp16_18
+-place_option 0
+-route_option 0
+-correct_hold 1
+-route_maxfan 23
+-global_freq 100.000
+-enable_dsrm 0
